@@ -1,15 +1,8 @@
-% KU Leuven latex presentation template
-%
-% © 2012 Michael Hofmann
-%
-% This work is licensed under the Creative Commons Attribution 3.0 Unported License.
 % To view a copy of this license, visit
 % http://creativecommons.org/licenses/by/3.0/ or send a letter to Creative
 % Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
 
-\documentclass[t,12pt,english
-\ifx\beamermode\undefined\else,\beamermode\fi
-]{beamer}
+\documentclass[aspectratio=169,t,12pt,english\ifx\beamermode\undefined\else,\beamermode\fi]{beamer}
 %\setbeameroption{show notes}
 %\setbeameroption{show only notes}
 
@@ -25,6 +18,7 @@
 \usepackage[symbol]{footmisc}
 \usepackage[notquote]{hanging}
 \usepackage[normalem]{ulem}
+\usepackage{tcolorbox}
 %\usepackage{lua-visual-debug}
 
 \pdfstringdefDisableCommands{\renewcommand{\sout}{}}
@@ -70,32 +64,32 @@
 
 \defbeamertemplate{background canvas}{title}
 {%
-    \pgfdeclarehorizontalshading{bgshading}{8.70cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
-    \vbox to 8.70cm{%
-        \pgfuseshading{bgshading}\hspace*{-1.6cm}%
-    }%
-    \hskip-\paperwidth%
-    \hskip1.6cm%
-    \vbox to \paperheight{%
-        \vskip0.5cm\hskip0.5cm\includegraphics[width=2.83cm]{templates/kuleuven}%
-        \vskip0.99cm\hskip0.76cm\includegraphics[width=2.84cm]{templates/key}%
-        \vskip-0.57cm\hskip11.61cm\includegraphics[width=0.58cm]{templates/sedes}\hspace*{-1cm}%
-        \vfill
-    }%
+	\pgfdeclarehorizontalshading{bgshading}{8.70cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
+	\vbox to 8.70cm{%
+		\pgfuseshading{bgshading}\hspace*{-1.6cm}%
+	}%
+	\hskip-\paperwidth%
+	\hskip1.6cm%
+	\vbox to \paperheight{%
+		\vskip0.5cm\hskip0.5cm\includegraphics[width=2.83cm]{templates/kuleuven}%
+		\vskip0.99cm\hskip0.76cm\includegraphics[width=2.84cm]{templates/key}%
+		\vskip-.63cm\hskip14.61cm\includegraphics[width=0.58cm]{templates/sedes}\hspace*{-1cm}%
+		\vfill
+	}%
 }
 
 \defbeamertemplate{background canvas}{grid}
 {%
-    \begin{tikzpicture}[remember picture,overlay,every node/.style={anchor=center}]
-        \foreach \d in {0,...,20} {
-            \draw[gray] (\d,0) -- (\d,-20);
-            \draw[gray] (0,-\d) -- (20,-\d);
-            \draw[lightgray] (\d+0.5,0) -- (\d+0.5,-20);
-            \draw[lightgray] (0,-\d-0.5) -- (20,-\d-0.5);
-            \node[anchor=north,red,font=\tiny] at (\d,0) {\d};
-            \node[anchor=west,red,font=\tiny] at (0,-\d) {\d};
-        }
-    \end{tikzpicture}
+	\begin{tikzpicture}[remember picture,overlay,every node/.style={anchor=center}]
+	\foreach \d in {0,...,20} {
+		\draw[gray] (\d,0) -- (\d,-20);
+		\draw[gray] (0,-\d) -- (20,-\d);
+		\draw[lightgray] (\d+0.5,0) -- (\d+0.5,-20);
+		\draw[lightgray] (0,-\d-0.5) -- (20,-\d-0.5);
+		\node[anchor=north,red,font=\tiny] at (\d,0) {\d};
+		\node[anchor=west,red,font=\tiny] at (0,-\d) {\d};
+	}
+	\end{tikzpicture}
 }
 
 
@@ -108,32 +102,32 @@
 % add a beamer template that sets the saved argument in a box.
 % The * means that the beamer font and color "footline extra" are automatically added.
 \defbeamertemplate*{footline extra}{default}{
-    %\begin{beamercolorbox}[ht=2.25ex,dp=1ex,leftskip=\Gm@lmargin]{footline extra}
-    \begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,wd=0.4\paperwidth,left,leftskip=2ex]{footline extra}
-    \insertfootlineextra
-    %\par\vspace{2.5pt}
-    \end{beamercolorbox}
+	%\begin{beamercolorbox}[ht=2.25ex,dp=1ex,leftskip=\Gm@lmargin]{footline extra}
+	\begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,wd=0.4\paperwidth,left,leftskip=2ex]{footline extra}
+		\insertfootlineextra
+		%\par\vspace{2.5pt}
+	\end{beamercolorbox}
 }
 
 \defbeamertemplate{background canvas}{plain}{}
 
 \defbeamertemplate{footline}{large}
 {%
-    \pgfdeclarehorizontalshading{bgshading}{0.62cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
-    \vskip.3cm% make room for the logo
-    \parbox[t][0.62cm]{\paperwidth}{\pgfuseshading{bgshading}}\par%
-    \vskip-0.62cm%
-    \begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,center]{page number in head/foot}%
-    \insertframenumber%
-    \end{beamercolorbox}%
-    \vskip-0.92cm%
-    \parbox[t][0.92cm]{\paperwidth}{\hskip10.33cm\includegraphics[width=2.10cm]{templates/kuleuven}}\par%
-
-    % set the box with the extra footline material but make it add no vertical space
-    \setbox\footlineextrabox=\vbox{\usebeamertemplate*{footline extra}}
-    \vskip -\ht\footlineextrabox
-    \vskip -\dp\footlineextrabox
-    \box\footlineextrabox%
+	\pgfdeclarehorizontalshading{bgshading}{0.62cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
+	\vskip.3cm% make room for the logo
+	\parbox[t][0.62cm]{\paperwidth}{\pgfuseshading{bgshading}}\par%
+	\vskip-0.62cm%
+	\begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,center]{page number in head/foot}%
+		\insertframenumber%
+	\end{beamercolorbox}%
+	\vskip-0.92cm%
+	\parbox[t][0.92cm]{\paperwidth}{\hskip13.33cm\includegraphics[width=2.10cm]{templates/kuleuven}}\par%
+	
+	% set the box with the extra footline material but make it add no vertical space
+	\setbox\footlineextrabox=\vbox{\usebeamertemplate*{footline extra}}
+	\vskip -\ht\footlineextrabox
+	\vskip -\dp\footlineextrabox
+	\box\footlineextrabox%
 }
 
 % patch \begin{frame} to reset the footline extra material
@@ -146,69 +140,69 @@
 
 \defbeamertemplate{footline}{nopagenumber}
 {%
-    \pgfdeclarehorizontalshading{bgshading}{0.62cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
-    \vskip.3cm% make room for the logo
-    \parbox[t][0.62cm]{\paperwidth}{\pgfuseshading{bgshading}}\par%
-    \vskip-0.62cm%
-    \begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,center,ignorebg]{page number in head/foot}%
-    %
-    \end{beamercolorbox}%
-    \vskip-0.92cm%
-    \parbox[t][0.92cm]{\paperwidth}{\hskip10.33cm\includegraphics[width=2.10cm]{templates/kuleuven}}\par%
+	\pgfdeclarehorizontalshading{bgshading}{0.62cm}{color(0cm)=(kulleft); color(\the\paperwidth)=(kulright)}%
+	\vskip.3cm% make room for the logo
+	\parbox[t][0.62cm]{\paperwidth}{\pgfuseshading{bgshading}}\par%
+	\vskip-0.62cm%
+	\begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,center,ignorebg]{page number in head/foot}%
+		%
+	\end{beamercolorbox}%
+	\vskip-0.92cm%
+	\parbox[t][0.92cm]{\paperwidth}{\hskip13.33cm\includegraphics[width=2.10cm]{templates/kuleuven}}\par%
 }
 
 \defbeamertemplate{footline}{small}
 {%
-    \vskip.3cm% make room for the logo
-    \begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,center,ignorebg]{normal text}%
-    \mdseries\insertframenumber%
-    \end{beamercolorbox}%
+	\vskip.3cm% make room for the logo
+	\begin{beamercolorbox}[ht=0.37cm,dp=0.25cm,center,ignorebg]{normal text}%
+		\mdseries\insertframenumber%
+	\end{beamercolorbox}%
 }
 
 \setbeamertemplate{footline}[large]
 
 \setbeamertemplate{frametitle}
 {%
-    \nointerlineskip%
-    \vskip.28cm%
-    {\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertsupertitle\strut\par}%
-    \vskip-.2cm%
-    {\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\strut\par}%
-    \vskip-.3cm%
+	\nointerlineskip%
+	\vskip.28cm%
+	{\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}\insertsupertitle\strut\par}%
+	\vskip-.2cm%
+	{\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}\insertframetitle\strut\par}%
+	\vskip-.3cm%
 }
 
 \setbeamertemplate{title page}
 {
-    \vbox{}%
-    \vskip2.8cm%
-    \vbox to 6.5cm{%
-        \hskip2.8cm%
-        \begin{minipage}{7.9cm}
-            \begin{beamercolorbox}{title}
-                \usebeamerfont{title}%
-                \inserttitle\par%
-                \ifx\insertsubtitle\undefined%
-                \else%
-                    \vskip0.25em%
-                    {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
-                \fi%
-            \end{beamercolorbox}%
-            \vskip1em\par
-            \begin{beamercolorbox}{author}
-                \usebeamerfont{author}\usebeamercolor[fg]{subtitle}%
-                \insertauthor
-            \end{beamercolorbox}
-            \begin{beamercolorbox}{institute}
-                \usebeamerfont{institute}\usebeamercolor[fg]{subtitle}%
-                \insertinstitute
-                \end{beamercolorbox}
-            \begin{beamercolorbox}{date}
-                \usebeamerfont{date}\usebeamercolor[fg]{subtitle}%
-                \insertdate
-            \end{beamercolorbox}%
-        \end{minipage}%
-        \vfill
-    }
+	\vbox{}%
+	\vskip2.8cm%
+	\vbox to 10.5cm{%
+		\hskip2.8cm%
+		\begin{minipage}{10cm}
+			\begin{beamercolorbox}{title}
+				\usebeamerfont{title}%
+				\inserttitle\par%
+				\ifx\insertsubtitle\undefined%
+				\else%
+				\vskip0.25em%
+				{\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+				\fi%
+			\end{beamercolorbox}%
+			\vskip1em\par
+			\begin{beamercolorbox}{author}
+				\usebeamerfont{author}\usebeamercolor[fg]{subtitle}%
+				\insertauthor
+			\end{beamercolorbox}
+			\begin{beamercolorbox}{institute}
+				\usebeamerfont{institute}\usebeamercolor[fg]{subtitle}%
+				\insertinstitute
+			\end{beamercolorbox}
+			\begin{beamercolorbox}{date}
+				\usebeamerfont{date}\usebeamercolor[fg]{subtitle}%
+				\insertdate
+			\end{beamercolorbox}%
+		\end{minipage}%
+		\vfill
+	}
 }
 
 \mode<all>
@@ -225,21 +219,21 @@
 \newcommand{\nofooter}{\setbeamertemplate{footline}[nofooter]}
 
 \newcommand{\sectiontoc}{\AtBeginSection[]{{
-    \nosupertitle
-    \emptyfooter
-    \begin{frame}[noframenumbering]{Outline}
-                \tableofcontents[currentsection]
-            \end{frame}
-    \largefooter
+			\nosupertitle
+			\emptyfooter
+			\begin{frame}[noframenumbering]{Outline}
+			\tableofcontents[currentsection]
+		\end{frame}
+		\largefooter
 }}}
 
 \newcommand{\subsectiontoc}{\AtBeginSubsection[]{{
-    \nosupertitle
-    \emptyfooter
-    \begin{frame}[noframenumbering]{Outline}
-                \tableofcontents[currentsection,currentsubsection]
-           \end{frame}
-    \largefooter
+		\nosupertitle
+		\emptyfooter
+		\begin{frame}[noframenumbering]{Outline}
+		\tableofcontents[currentsection,currentsubsection]
+	\end{frame}
+	\largefooter
 }}}
 
 \newcommand{\notoc}{\AtBeginSection[]{}\AtBeginSubsection[]{}}
@@ -275,20 +269,20 @@
 \makeatletter
 \def\parsecomma#1,#2\endparsecomma{\def\page@x{#1}\def\page@y{#2}}
 \tikzdeclarecoordinatesystem{page}{
-    \parsecomma#1\endparsecomma
-    \pgfpointanchor{current page}{north east}
-    % Save the upper right corner
-    \pgf@xc=\pgf@x%
-    \pgf@yc=\pgf@y%
-    % save the lower left corner
-    \pgfpointanchor{current page}{south west}
-    \pgf@xb=\pgf@x%
-    \pgf@yb=\pgf@y%
-    % Transform to the correct placement
-    \pgfmathparse{(\pgf@xc-\pgf@xb)*\page@x+(\pgf@xb)}
-    \expandafter\pgf@x\expandafter=\pgfmathresult pt
-    \pgfmathparse{(\pgf@yc-\pgf@yb)*\page@y+(\pgf@yb)}
-    \expandafter\pgf@y\expandafter=\pgfmathresult pt
+\parsecomma#1\endparsecomma
+\pgfpointanchor{current page}{north east}
+% Save the upper right corner
+\pgf@xc=\pgf@x%
+\pgf@yc=\pgf@y%
+% save the lower left corner
+\pgfpointanchor{current page}{south west}
+\pgf@xb=\pgf@x%
+\pgf@yb=\pgf@y%
+% Transform to the correct placement
+\pgfmathparse{(\pgf@xc-\pgf@xb)*\page@x+(\pgf@xb)}
+\expandafter\pgf@x\expandafter=\pgfmathresult pt
+\pgfmathparse{(\pgf@yc-\pgf@yb)*\page@y+(\pgf@yb)}
+\expandafter\pgf@y\expandafter=\pgfmathresult pt
 }
 \makeatother
 
